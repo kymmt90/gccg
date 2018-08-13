@@ -1,0 +1,3 @@
+project=gccg
+test=rspec
+template=erb
