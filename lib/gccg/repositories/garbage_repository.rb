@@ -1,0 +1,13 @@
+class GarbageRepository < Hanami::Repository
+  def combustible
+    garbages.where(segregation: 'combustible').one
+  end
+
+  def non_combustible
+    garbages.where(segregation: 'non_combustible').one
+  end
+
+  def recyclable
+    garbages.where(segregation: 'recyclable').one
+  end
+end
