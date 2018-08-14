@@ -15,6 +15,7 @@ end
 
 group :test, :development do
   gem 'dotenv', '~> 2.0'
+  gem 'pry-byebug'
   gem 'rom-factory'
 end
 
