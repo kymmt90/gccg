@@ -6,7 +6,7 @@ Hanami::Model.migration do
     create_table :garbages do
       primary_key :id
 
-      column :segregation, :segregation, null: false
+      column :segregation, :segregation, null: false, unique: true
       column :created_at, DateTime, null: false
       column :updated_at, DateTime, null: false
     end
