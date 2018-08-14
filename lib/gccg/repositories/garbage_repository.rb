@@ -1,4 +1,8 @@
 class GarbageRepository < Hanami::Repository
+  associations do
+    has_many :schedules
+  end
+
   def combustible
     garbages.where(segregation: 'combustible').one
   end
