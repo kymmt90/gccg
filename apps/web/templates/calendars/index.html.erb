@@ -1,0 +1,8 @@
+<h1>GCCG</h1>
+
+<% calendars.each do |calendar| %>
+  <h2><%= calendar.title %></h2>
+  <div>
+    <p><%= calendar.starts_on %>〜<%= calendar.ends_on %></p>
+  </div>
+<% end %>
