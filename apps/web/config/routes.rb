@@ -1,4 +1,3 @@
 root to: 'calendars#index'
 
-resources :calendars, only: [:index, :show, :new, :create, :edit]
-patch '/calendars/:id', to: 'calendars#update'
+resources :calendars, only: [:index, :show, :new, :create, :edit, :update]
