@@ -1,0 +1,26 @@
+<h1>GCCG</h1>
+
+<h2>カレンダーをつくる</h2>
+
+<%=
+  form_for :calendar, routes.calendars_path do
+    div do
+      label 'タイトル', for: :title
+      text_field :title
+    end
+
+    div do
+      label 'カレンダー開始日', for: :starts_on
+      date_field :starts_on
+    end
+
+    div do
+      label 'カレンダー終了日', for: :ends_on
+      date_field :ends_on
+    end
+
+    div do
+      submit '保存'
+    end
+  end
+%>

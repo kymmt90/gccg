@@ -1,5 +1,9 @@
 <h1>GCCG</h1>
 
+<div>
+  <%= link_to 'カレンダーをつくる', routes.new_calendar_path %>
+</div>
+
 <% calendars.each do |calendar| %>
   <h2><%= link_to calendar.title, routes.calendar_path(calendar.id) %></h2>
   <div>
