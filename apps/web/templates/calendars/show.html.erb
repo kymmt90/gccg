@@ -4,3 +4,7 @@
 <div>
   <p><%= calendar.starts_on %>〜<%= calendar.ends_on %></p>
 </div>
+
+<div>
+  <%= link_to 'カレンダーをなおす', routes.edit_calendar_path(calendar.id) %>
+</div>

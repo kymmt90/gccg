@@ -1,0 +1,38 @@
+<h1>GCCG</h1>
+
+<h2>カレンダーをなおす</h2>
+
+<% unless params.valid? %>
+  <ul>
+    <% params.error_messages.each do |error| %>
+      <li><%= error %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%=
+  form_for :calendar, routes.calendar_path(calendar.id), method: :patch, values: { calendar: calendar } do
+    div do
+      label 'タイトル', for: :title
+      text_field :title
+    end
+
+    div do
+      label 'カレンダー開始日', for: :starts_on
+      date_field :starts_on
+    end
+
+    div do
+      label 'カレンダー終了日', for: :ends_on
+      date_field :ends_on
+    end
+
+    div do
+      submit '保存'
+    end
+  end
+%>
+
+<div>
+  <%= link_to 'もどる', routes.calendar_path(calendar.id) %>
+</div>
