@@ -90,4 +90,14 @@ RSpec.describe Web::Controllers::Calendars::Update, type: :action do
       expect(response).to have_http_status :unprocessable_entity
     end
   end
+
+  context 'when ends_on preceeds starts_on' do
+    let(:starts_on) { '2018-08-02' }
+    let(:ends_on) { '2018-08-01' }
+
+    it 'returns 422' do
+      response = action.call(params)
+      expect(response).to have_http_status :unprocessable_entity
+    end
+  end
 end

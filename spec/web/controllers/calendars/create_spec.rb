@@ -70,8 +70,8 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
     end
   end
 
-  context 'when starts_on is not match the specified date format' do
-    let(:starts_on) { '20180801' }
+  context 'when starts_on is not valid date' do
+    let(:starts_on) { '201808011' }
 
     it 'returns 422' do
       response = action.call(params)
@@ -79,8 +79,18 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
     end
   end
 
-  context 'when ends_on is not match the specified date format' do
-    let(:ends_on) { '20180801' }
+  context 'when ends_on is not valid date' do
+    let(:ends_on) { '201808011' }
+
+    it 'returns 422' do
+      response = action.call(params)
+      expect(response).to have_http_status :unprocessable_entity
+    end
+  end
+
+  context 'when ends_on preceeds starts_on' do
+    let(:starts_on) { '2018-08-02' }
+    let(:ends_on) { '2018-08-01' }
 
     it 'returns 422' do
       response = action.call(params)
