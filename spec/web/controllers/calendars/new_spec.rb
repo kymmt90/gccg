@@ -4,6 +4,6 @@ RSpec.describe Web::Controllers::Calendars::New, type: :action do
 
   it 'is successful' do
     response = action.call(params)
-    expect(response[0]).to eq 200
+    expect(response).to have_http_status :ok
   end
 end

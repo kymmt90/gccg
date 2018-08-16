@@ -6,7 +6,8 @@ RSpec.describe Web::Controllers::Calendars::Index, type: :action do
     it 'is successful' do
       response = action.call(params)
 
-      expect(response[0]).to eq 200
+      expect(response).to have_http_status :ok
+      expect(action.calendars).to be_empty
     end
   end
 
@@ -18,7 +19,7 @@ RSpec.describe Web::Controllers::Calendars::Index, type: :action do
 
       response = action.call(params)
 
-      expect(response[0]).to eq 200
+      expect(response).to have_http_status :ok
       expect(action.calendars).to match_array [calendar, another_calendar]
     end
   end

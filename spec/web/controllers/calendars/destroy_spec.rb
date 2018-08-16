@@ -15,9 +15,9 @@ RSpec.describe Web::Controllers::Calendars::Destroy, type: :action do
       }.to change(repository, :count).by(-1)
     end
 
-    it 'returns 302' do
+    it 'redirects to calendars#index' do
       response = action.call(params)
-      expect(response[0]).to eq 302
+      expect(response).to redirect_to Web.routes.root_path
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe Web::Controllers::Calendars::Destroy, type: :action do
 
     it 'returns 404' do
       response = action.call(params)
-      expect(response[0]).to eq 404
+      expect(response).to have_http_status :not_found
     end
   end
 end

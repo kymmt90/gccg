@@ -22,9 +22,11 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
       expect { action.call(params) }.to change(repository, :count).by(1)
     end
 
-    it 'returns 302' do
+    it 'redirects to calendars#show' do
       response = action.call(params)
-      expect(response[0]).to eq 302
+
+      calendar = CalendarRepository.new.first
+      expect(response).to redirect_to Web.routes.calendar_path(calendar.id)
     end
   end
 
@@ -33,25 +35,29 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
 
     it 'returns 422' do
       response = action.call(params)
-      expect(response[0]).to eq 422
+      expect(response).to have_http_status :unprocessable_entity
     end
   end
 
   context 'when title length is 1' do
     let(:title) { 'a' }
 
-    it 'returns 302' do
+    it 'redirects to calendars#show' do
       response = action.call(params)
-      expect(response[0]).to eq 302
+
+      calendar = CalendarRepository.new.first
+      expect(response).to redirect_to Web.routes.calendar_path(calendar.id)
     end
   end
 
   context 'when title length is 255' do
     let(:title) { 'a' * 255 }
 
-    it 'returns 302' do
+    it 'redirects to calendars#show' do
       response = action.call(params)
-      expect(response[0]).to eq 302
+
+      calendar = CalendarRepository.new.first
+      expect(response).to redirect_to Web.routes.calendar_path(calendar.id)
     end
   end
 
@@ -60,7 +66,7 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
 
     it 'returns 422' do
       response = action.call(params)
-      expect(response[0]).to eq 422
+      expect(response).to have_http_status :unprocessable_entity
     end
   end
 
@@ -69,7 +75,7 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
 
     it 'returns 422' do
       response = action.call(params)
-      expect(response[0]).to eq 422
+      expect(response).to have_http_status :unprocessable_entity
     end
   end
 
@@ -78,7 +84,7 @@ RSpec.describe Web::Controllers::Calendars::Create, type: :action do
 
     it 'returns 422' do
       response = action.call(params)
-      expect(response[0]).to eq 422
+      expect(response).to have_http_status :unprocessable_entity
     end
   end
 end

@@ -9,7 +9,7 @@ RSpec.describe Web::Controllers::Calendars::Show, type: :action do
     it 'is successful' do
       response = action.call(params)
 
-      expect(response[0]).to eq 200
+      expect(response).to have_http_status :ok
       expect(action.calendar).to eq calendar
     end
   end
@@ -22,7 +22,7 @@ RSpec.describe Web::Controllers::Calendars::Show, type: :action do
     it 'is successful' do
       response = action.call(params)
 
-      expect(response[0]).to eq 404
+      expect(response).to have_http_status :not_found
     end
   end
 end
