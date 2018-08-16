@@ -8,3 +8,9 @@
 <div>
   <%= link_to 'カレンダーをなおす', routes.edit_calendar_path(calendar.id) %>
 </div>
+
+<%=
+  form_for :calendar, routes.calendar_path(calendar.id), method: :delete, id: 'calendar-delete-form' do
+    submit 'カレンダーを消す'
+  end
+%>
