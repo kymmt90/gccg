@@ -6,8 +6,10 @@ ENV LANG=C.UTF-8 \
 ENV BUNDLE_GEMFILE=$APP_HOME/Gemfile \
     BUNDLE_JOBS=4
 
-RUN apt-get update && apt-get install -y \
-    postgresql \
+RUN echo deb http://apt.postgresql.org/pub/repos/apt/ stretch-pgdg main > /etc/apt/sources.list.d/pgdg.list \
+ && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+ && apt-get update && apt-get install -y \
+    postgresql-10 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
